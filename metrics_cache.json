@@ -1,0 +1,217 @@
+{
+  "accuracy": 0.9742,
+  "f1_score": 0.9772,
+  "precision": 0.966,
+  "recall": 0.9887,
+  "confusion_matrix": {
+    "tp": 1221,
+    "fp": 43,
+    "tn": 933,
+    "fn": 14
+  },
+  "total_test_samples": 2211,
+  "feature_importances": [
+    {
+      "name": "HTTPS",
+      "importance": 0.6966,
+      "percentage": 69.66
+    },
+    {
+      "name": "AnchorURL",
+      "importance": 0.1322,
+      "percentage": 13.22
+    },
+    {
+      "name": "WebsiteTraffic",
+      "importance": 0.0414,
+      "percentage": 4.14
+    },
+    {
+      "name": "LinksInScriptTags",
+      "importance": 0.0327,
+      "percentage": 3.27
+    },
+    {
+      "name": "PrefixSuffix-",
+      "importance": 0.0241,
+      "percentage": 2.41
+    },
+    {
+      "name": "SubDomains",
+      "importance": 0.0119,
+      "percentage": 1.19
+    },
+    {
+      "name": "LinksPointingToPage",
+      "importance": 0.0095,
+      "percentage": 0.95
+    },
+    {
+      "name": "ServerFormHandler",
+      "importance": 0.0083,
+      "percentage": 0.83
+    },
+    {
+      "name": "GoogleIndex",
+      "importance": 0.0076,
+      "percentage": 0.76
+    },
+    {
+      "name": "DomainRegLen",
+      "importance": 0.0054,
+      "percentage": 0.54
+    }
+  ],
+  "all_feature_importances": [
+    {
+      "name": "HTTPS",
+      "importance": 0.6966,
+      "percentage": 69.66
+    },
+    {
+      "name": "AnchorURL",
+      "importance": 0.1322,
+      "percentage": 13.22
+    },
+    {
+      "name": "WebsiteTraffic",
+      "importance": 0.0414,
+      "percentage": 4.14
+    },
+    {
+      "name": "LinksInScriptTags",
+      "importance": 0.0327,
+      "percentage": 3.27
+    },
+    {
+      "name": "PrefixSuffix-",
+      "importance": 0.0241,
+      "percentage": 2.41
+    },
+    {
+      "name": "SubDomains",
+      "importance": 0.0119,
+      "percentage": 1.19
+    },
+    {
+      "name": "LinksPointingToPage",
+      "importance": 0.0095,
+      "percentage": 0.95
+    },
+    {
+      "name": "ServerFormHandler",
+      "importance": 0.0083,
+      "percentage": 0.83
+    },
+    {
+      "name": "GoogleIndex",
+      "importance": 0.0076,
+      "percentage": 0.76
+    },
+    {
+      "name": "DomainRegLen",
+      "importance": 0.0054,
+      "percentage": 0.54
+    },
+    {
+      "name": "RequestURL",
+      "importance": 0.0044,
+      "percentage": 0.44
+    },
+    {
+      "name": "LongURL",
+      "importance": 0.0042,
+      "percentage": 0.42
+    },
+    {
+      "name": "DNSRecording",
+      "importance": 0.004,
+      "percentage": 0.4
+    },
+    {
+      "name": "UsingIP",
+      "importance": 0.0027,
+      "percentage": 0.27
+    },
+    {
+      "name": "AgeofDomain",
+      "importance": 0.0024,
+      "percentage": 0.24
+    },
+    {
+      "name": "UsingPopupWindow",
+      "importance": 0.002,
+      "percentage": 0.2
+    },
+    {
+      "name": "InfoEmail",
+      "importance": 0.0017,
+      "percentage": 0.17
+    },
+    {
+      "name": "PageRank",
+      "importance": 0.0017,
+      "percentage": 0.17
+    },
+    {
+      "name": "HTTPSDomainURL",
+      "importance": 0.0015,
+      "percentage": 0.15
+    },
+    {
+      "name": "IframeRedirection",
+      "importance": 0.0013,
+      "percentage": 0.13
+    },
+    {
+      "name": "WebsiteForwarding",
+      "importance": 0.0009,
+      "percentage": 0.09
+    },
+    {
+      "name": "ShortURL",
+      "importance": 0.0008,
+      "percentage": 0.08
+    },
+    {
+      "name": "DisableRightClick",
+      "importance": 0.0007,
+      "percentage": 0.07
+    },
+    {
+      "name": "AbnormalURL",
+      "importance": 0.0005,
+      "percentage": 0.05
+    },
+    {
+      "name": "StatusBarCust",
+      "importance": 0.0004,
+      "percentage": 0.04
+    },
+    {
+      "name": "Redirecting//",
+      "importance": 0.0003,
+      "percentage": 0.03
+    },
+    {
+      "name": "Favicon",
+      "importance": 0.0003,
+      "percentage": 0.03
+    },
+    {
+      "name": "NonStdPort",
+      "importance": 0.0003,
+      "percentage": 0.03
+    },
+    {
+      "name": "StatsReport",
+      "importance": 0.0002,
+      "percentage": 0.02
+    },
+    {
+      "name": "Symbol@",
+      "importance": 0.0001,
+      "percentage": 0.01
+    }
+  ]
+}
