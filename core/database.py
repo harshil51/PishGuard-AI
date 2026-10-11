@@ -4,8 +4,25 @@ import os
 from datetime import datetime
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DB_PATH = os.path.join(ROOT_DIR, "data", "phishguard.db")
-os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+DEFAULT_DB_PATH = os.path.join(ROOT_DIR, "data", "phishguard.db")
+
+# In serverless environments (e.g. Vercel, AWS Lambda), the deployment directory is read-only.
+# We redirect the SQLite database to /tmp and copy any pre-seeded database if needed.
+if os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
+    DB_PATH = os.path.join("/tmp", "phishguard.db")
+    if not os.path.exists(DB_PATH) and os.path.exists(DEFAULT_DB_PATH):
+        try:
+            import shutil
+            shutil.copyfile(DEFAULT_DB_PATH, DB_PATH)
+        except Exception:
+            pass
+else:
+    DB_PATH = os.environ.get("PHISHGUARD_DB_PATH", DEFAULT_DB_PATH)
+
+try:
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+except Exception:
+    pass
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
