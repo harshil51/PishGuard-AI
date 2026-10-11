@@ -9,13 +9,13 @@ from flask import Flask, request, render_template, jsonify, send_from_directory
 
 warnings.filterwarnings('ignore')
 
-from feature import FeatureExtraction, defang_url
-from email_scanner import EmailThreatScanner
-import database as db
-import metrics_service
+from core.feature import FeatureExtraction, defang_url
+from core.email_scanner import EmailThreatScanner
+import core.database as db
+import core.metrics_service as metrics_service
 
 # Load trained Gradient Boosting model
-model_path = os.path.join(os.path.dirname(__file__), "pickle", "model.pkl")
+model_path = os.path.join(os.path.dirname(__file__), "models", "model.pkl")
 with open(model_path, "rb") as file:
     gbc = pickle.load(file)
 

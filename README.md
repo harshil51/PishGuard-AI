@@ -90,7 +90,7 @@ Phishing remains the primary attack vector behind over **90% of corporate data b
                     ▼                                                           ▼
     ┌──────────────────────────────┐                            ┌──────────────────────────────┐
     │     URL Scanning Engine      │                            │     Email Threat Scanner     │
-    │        (`feature.py`)        │                            │     (`email_scanner.py`)     │
+    │     (`core/feature.py`)      │                            │  (`core/email_scanner.py`)   │
     └───────────────┬──────────────┘                            └───────────────┬──────────────┘
                     │                                                           │
         ┌───────────┴───────────┐                                               │
@@ -111,7 +111,7 @@ Phishing remains the primary attack vector behind over **90% of corporate data b
                     ▼                                                           │
     ┌──────────────────────────────┐                                            │
     │  Gradient Boosting Model     │                                            │
-    │      (`model.pkl`)           │                                            │
+    │     (`models/model.pkl`)     │                                            │
     └───────────────┬──────────────┘                                            │
                     │                                                           │
                     └─────────────────────┬─────────────────────────────────────┘
@@ -119,8 +119,8 @@ Phishing remains the primary attack vector behind over **90% of corporate data b
                                           ▼
                          ┌─────────────────────────────────┐
                          │      Database & Persistence     │
-                         │   SQLite Engine (`database.py`) │
-                         │       (`phishguard.db`)         │
+                         │ SQLite Engine (`core/database`) │
+                         │     (`data/phishguard.db`)      │
                          └────────────────┬────────────────┘
                                           │
                                           ▼
@@ -460,28 +460,41 @@ PhishGuard AI provides a RESTful JSON API for programmatic integration with secu
 
 ```
 PhishGuard-AI/
-├── app.py                     # Primary Flask web server & REST API endpoints
-├── database.py                # SQLite database management & query abstraction
-├── email_scanner.py           # Heuristic email threat detection engine
-├── feature.py                 # 30-feature extraction pipeline, SSRF guard & defanging
-├── metrics_service.py         # Model performance evaluator & telemetry aggregator
-├── metrics_cache.json         # Serialized metrics cache for fast dashboard loading
-├── train.py                   # Automated model training and serialization script
-├── phishing.csv               # 11,055-sample benchmark dataset
-├── phishguard.db              # SQLite relational database storing historical scans
-├── requirements.txt           # Python dependency definitions
-├── Procfile                   # Cloud PaaS production execution command
+├── .gitignore                 # Excludes environments, caches, and OS metadata
 ├── LICENSE                    # MIT Open Source License
-├── test-url.txt               # Sample verified phishing & legitimate testing URLs
-├── pickle/
-│   └── model.pkl              # Production Gradient Boosting classifier
-├── static/
+├── Procfile                   # Cloud PaaS production execution command
+├── README.md                  # Comprehensive architectural documentation
+├── requirements.txt           # Python dependency definitions
+├── app.py                     # Primary Flask web server & REST API controller
+├── train.py                   # Automated model training and serialization script
+│
+├── core/                      # Core backend architecture & intelligence services
+│   ├── __init__.py            # Python package initialization
+│   ├── database.py            # SQLite database management & forensic query abstraction
+│   ├── email_scanner.py       # Heuristic email threat detection engine
+│   ├── feature.py             # 30-feature extraction pipeline, SSRF guard & defanging
+│   └── metrics_service.py     # Model performance evaluator & telemetry aggregator
+│
+├── data/                      # Structured dataset & local persistence store
+│   ├── phishing.csv           # 11,055-sample benchmark training dataset
+│   ├── phishguard.db          # SQLite relational database storing historical scans
+│   └── test-url.txt           # Verified adversarial test URLs for validation
+│
+├── models/                    # Serialized machine learning models & telemetry cache
+│   ├── metrics_cache.json     # Precomputed evaluation telemetry for fast dashboard loading
+│   └── model.pkl              # Production Gradient Boosting classifier binary
+│
+├── notebooks/                 # Jupyter research & exploratory data analysis (EDA)
+│   └── Phishing URL Detection.ipynb # Model experimentation & benchmark notebook
+│
+├── static/                    # Frontend assets & client runtime
 │   ├── app.js                 # Interactive dashboard controller & animations
 │   ├── styles.css             # Unified CSS design system & multi-theme variables
 │   ├── favicon.ico            # Favicon
 │   ├── logo.png               # PhishGuard AI primary branding logo
-│   └── img/                   # Static imagery & documentation assets
-└── templates/
+│   └── img/                   # Documentation assets & media
+│
+└── templates/                 # Server-rendered HTML views
     └── index.html             # Multi-tab responsive command center interface
 ```
 
@@ -543,7 +556,7 @@ python train.py
 
 **Training Output:**
 ```
-Loading dataset: phishing.csv ...
+Loading dataset: data/phishing.csv ...
 Dataset Split: 8844 training samples, 2211 test samples across 30 features.
 Training GradientBoostingClassifier (max_depth=4, learning_rate=0.7)...
 
@@ -553,7 +566,7 @@ F1 Score      : 0.9772
 Precision     : 0.9660
 Recall        : 0.9887
 
-Trained model successfully serialized and saved to: pickle/model.pkl
+Trained model successfully serialized and saved to: models/model.pkl
 ```
 
 ---

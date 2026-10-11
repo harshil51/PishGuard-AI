@@ -7,8 +7,10 @@ import pickle
 import os
 
 def train():
-    print("Loading dataset: phishing.csv ...")
-    data = pd.read_csv("phishing.csv")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    data_path = os.path.join(base_dir, "data", "phishing.csv")
+    print(f"Loading dataset: {data_path} ...")
+    data = pd.read_csv(data_path)
 
     if 'Index' in data.columns:
         data = data.drop(['Index'], axis=1)
@@ -35,8 +37,9 @@ def train():
     print(f"Precision     : {precision:.4f}")
     print(f"Recall        : {recall:.4f}")
 
-    os.makedirs("pickle", exist_ok=True)
-    model_path = os.path.join("pickle", "model.pkl")
+    models_dir = os.path.join(base_dir, "models")
+    os.makedirs(models_dir, exist_ok=True)
+    model_path = os.path.join(models_dir, "model.pkl")
     with open(model_path, "wb") as f:
         pickle.dump(gbc, f)
     print(f"\nTrained model successfully serialized and saved to: {model_path}")
